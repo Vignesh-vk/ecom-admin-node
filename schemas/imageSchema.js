@@ -1,6 +1,7 @@
 var IMAGESCHEMA = {
-    filename: String,
-    category:String
+    category: String,
+    filename:String,
+    status: String,
 };
 
 module.exports = IMAGESCHEMA;
