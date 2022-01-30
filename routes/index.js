@@ -5,4 +5,7 @@ module.exports = function(app) {
   app.use(BaseUrl+"countries", require("../controllers/admin/country"));
   app.use(BaseUrl+"category", require("../controllers/admin/category"));
   app.use(BaseUrl+"currency", require("../controllers/admin/currency"));
+  app.use(BaseUrl+"languages", require("../controllers/admin/language"));
+  app.use(BaseUrl+"newsletters", require("../controllers/admin/newsletter"));
+  app.use(BaseUrl+"payments", require("../controllers/admin/payment"));
 }
