@@ -9,6 +9,7 @@ const importedcurrencySchema = require('../schemas/currencySchema')
 const importedlanguageSchema = require('../schemas/languageSchema');
 const importednewsletterSchema = require('../schemas/newsletterSchema');
 const importedpaymentSchema = require('../schemas/paymentSchema');
+const importedconfigSchema = require('../schemas/configschema');
 
 // Creating schema
 const FaqSchema = mongoose.Schema(importedfaqSchema, { timestamps: true, versionKey: false });
@@ -19,6 +20,7 @@ const CurrencySchema = mongoose.Schema(importedcurrencySchema,{timestamps: true,
 const LanguageSchema = mongoose.Schema(importedlanguageSchema,{timestamps: true, versionKey: false });
 const NewsletterSchema = mongoose.Schema(importednewsletterSchema,{timestamps: true, versionKey: false });
 const PaymentSchema = mongoose.Schema(importedpaymentSchema,{timestamps: true, versionKey: false });
+const configSchema = mongoose.Schema(importedconfigSchema,{timestamps: true, versionKey: false });
 
 // Creating models
 const FaqModel = mongoose.model('faqs', FaqSchema);
@@ -29,6 +31,7 @@ const CurrencyModel = mongoose.model('currency',CurrencySchema);
 const LanguageModel = mongoose.model('languages', LanguageSchema);
 const NewsletterModel= mongoose.model('newsletter',NewsletterSchema)
 const PaymentModel= mongoose.model('payments',PaymentSchema)
+const ConfigModel= mongoose.model('config',configSchema)
 
 module.exports = {
   faqs: FaqModel,
@@ -38,5 +41,6 @@ module.exports = {
   currency:CurrencyModel,
   languages: LanguageModel,
   newsletter:NewsletterModel,
-  payments:PaymentModel
+  payments:PaymentModel,
+  config:ConfigModel
 }

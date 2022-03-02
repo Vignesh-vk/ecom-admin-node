@@ -8,4 +8,5 @@ module.exports = function(app) {
   app.use(BaseUrl+"languages", require("../controllers/admin/language"));
   app.use(BaseUrl+"newsletters", require("../controllers/admin/newsletter"));
   app.use(BaseUrl+"payments", require("../controllers/admin/payment"));
+  app.use(BaseUrl+"config", require("../controllers/admin/config"));
 }
