@@ -10,6 +10,8 @@ const importedlanguageSchema = require('../schemas/languageSchema');
 const importednewsletterSchema = require('../schemas/newsletterSchema');
 const importedpaymentSchema = require('../schemas/paymentSchema');
 const importedconfigSchema = require('../schemas/configschema');
+const importedauthSchema = require('../schemas/authSchema');
+const importedLoginSchema = require('../schemas/loginSchema');
 
 // Creating schema
 const FaqSchema = mongoose.Schema(importedfaqSchema, { timestamps: true, versionKey: false });
@@ -21,6 +23,8 @@ const LanguageSchema = mongoose.Schema(importedlanguageSchema,{timestamps: true,
 const NewsletterSchema = mongoose.Schema(importednewsletterSchema,{timestamps: true, versionKey: false });
 const PaymentSchema = mongoose.Schema(importedpaymentSchema,{timestamps: true, versionKey: false });
 const configSchema = mongoose.Schema(importedconfigSchema,{timestamps: true, versionKey: false });
+const authSchema = mongoose.Schema(importedauthSchema,{timestamps: true, versionKey: false });
+const LoginSchema = mongoose.Schema(importedLoginSchema,{timestamps: true, versionKey: false });
 
 // Creating models
 const FaqModel = mongoose.model('faqs', FaqSchema);
@@ -32,6 +36,8 @@ const LanguageModel = mongoose.model('languages', LanguageSchema);
 const NewsletterModel= mongoose.model('newsletter',NewsletterSchema)
 const PaymentModel= mongoose.model('payments',PaymentSchema)
 const ConfigModel= mongoose.model('config',configSchema)
+const AuthModel= mongoose.model('auth',authSchema)
+const LoginModel= mongoose.model('logins',LoginSchema)
 
 module.exports = {
   faqs: FaqModel,
@@ -42,5 +48,7 @@ module.exports = {
   languages: LanguageModel,
   newsletter:NewsletterModel,
   payments:PaymentModel,
-  config:ConfigModel
+  config:ConfigModel,
+  auth:AuthModel,
+  logins:LoginModel
 }
