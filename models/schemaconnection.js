@@ -23,7 +23,7 @@ const LanguageSchema = mongoose.Schema(importedlanguageSchema,{timestamps: true,
 const NewsletterSchema = mongoose.Schema(importednewsletterSchema,{timestamps: true, versionKey: false });
 const PaymentSchema = mongoose.Schema(importedpaymentSchema,{timestamps: true, versionKey: false });
 const configSchema = mongoose.Schema(importedconfigSchema,{timestamps: true, versionKey: false });
-const authSchema = mongoose.Schema(importedauthSchema,{timestamps: true, versionKey: false });
+const AuthSchema = mongoose.Schema(importedauthSchema,{timestamps: true, versionKey: false });
 const LoginSchema = mongoose.Schema(importedLoginSchema,{timestamps: true, versionKey: false });
 
 // Creating models
@@ -36,7 +36,7 @@ const LanguageModel = mongoose.model('languages', LanguageSchema);
 const NewsletterModel= mongoose.model('newsletter',NewsletterSchema)
 const PaymentModel= mongoose.model('payments',PaymentSchema)
 const ConfigModel= mongoose.model('config',configSchema)
-const AuthModel= mongoose.model('auth',authSchema)
+const AuthModel= mongoose.model('User',AuthSchema)
 const LoginModel= mongoose.model('logins',LoginSchema)
 
 module.exports = {
@@ -49,6 +49,6 @@ module.exports = {
   newsletter:NewsletterModel,
   payments:PaymentModel,
   config:ConfigModel,
-  auth:AuthModel,
+  User:AuthModel,
   logins:LoginModel
 }
