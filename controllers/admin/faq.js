@@ -3,7 +3,8 @@ const Router        = express.Router();
 const DB            = require('../../models/db');
 const HELPERFUNC    = require('../../models/commonfunctions');
 var mongoose        = require('mongoose');
-Router.get('/listFaqs',function(req,res) {
+const verifyToken= require('./auth/verifyToken')
+Router.get('/listFaqs',verifyToken,function(req,res) {
   const response = {
     status  : 0,
   }
@@ -19,7 +20,7 @@ Router.get('/listFaqs',function(req,res) {
   });
 });
 
-Router.post('/viewFaq',function(req,res) {
+Router.post('/viewFaq',verifyToken,function(req,res) {
   const response = {    
   }
   DB.GetOneDocument('faqs',{_id:req.body.id}, {}, {}, function(err, result) {
@@ -35,7 +36,7 @@ Router.post('/viewFaq',function(req,res) {
   });
 });
 
-Router.post('/addUpdateFaq',function(req,res) {
+Router.post('/addUpdateFaq',verifyToken,function(req,res) {
   const response = {
     status  : 0,
     message : 'Something went wrong in your code!'
@@ -99,7 +100,7 @@ Router.post('/addUpdateFaq',function(req,res) {
   }
 })
 
-Router.post('/deleteFaq',function(req,res) {
+Router.post('/deleteFaq',verifyToken,function(req,res) {
   const response = {
     status  : 0,
     message : 'Something went wrong in your code!'

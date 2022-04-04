@@ -3,8 +3,9 @@ const Router        = express.Router();
 const DB            = require('../../models/db');
 const HELPERFUNC    = require('../../models/commonfunctions');
 var mongoose        = require('mongoose');
+const verifyToken = require('./auth/verifyToken');
 
-Router.get('/listCountries',function(req,res) {
+Router.get('/listCountries',verifyToken, function(req,res) {
   const response = {
     status  : 0,
   }
@@ -20,7 +21,7 @@ Router.get('/listCountries',function(req,res) {
   });
 });
 
-Router.post('/viewCountry',function(req,res) {
+Router.post('/viewCountry',verifyToken,function(req,res) {
   const response = {
 
   }
@@ -37,7 +38,7 @@ Router.post('/viewCountry',function(req,res) {
   });
 });
 
-Router.post('/addUpdateCountry',function(req,res) {
+Router.post('/addUpdateCountry',verifyToken,function(req,res) {
   const response = {
     status  : 0,
     message : 'Something went wrong in your code!'
@@ -101,7 +102,7 @@ Router.post('/addUpdateCountry',function(req,res) {
   }
 })
 
-Router.post('/deleteCountry',function(req,res) {
+Router.post('/deleteCountry',verifyToken,function(req,res) {
   const response = {
     status  : 0,
     message : 'Something went wrong in your code!'

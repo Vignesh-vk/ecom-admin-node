@@ -5,6 +5,7 @@ const HELPERFUNC = require('../../models/commonfunctions');
 var mongoose = require('mongoose');
 const multer = require('multer');
 const path = require('path');
+const verifyToken = require('./auth/verifyToken');
 
 const imageStorage = multer.diskStorage({
     destination: 'uploads',
@@ -27,7 +28,7 @@ const imageUpload = multer({
     }
 })
 
-Router.post('/addUpdateImage', imageUpload.single('image'), (req, res)=> {
+Router.post('/addUpdateImage',verifyToken, imageUpload.single('image'), (req, res)=> {
     console.log(req.file,"req.filename");
     const response = {
         status: 0,
@@ -94,7 +95,7 @@ Router.post('/addUpdateImage', imageUpload.single('image'), (req, res)=> {
 })
 
 
-Router.get('/listImages', function (req, res) {
+Router.get('/listImages',verifyToken, function (req, res) {
     const response = {
         status: 0,
     }
@@ -109,7 +110,7 @@ Router.get('/listImages', function (req, res) {
         }
     });
 });
-Router.post('/viewImage', function (req, res) {
+Router.post('/viewImage',verifyToken, function (req, res) {
     const response = {
         status: 0,
     }
@@ -126,7 +127,7 @@ Router.post('/viewImage', function (req, res) {
         }
     });
 });
-Router.post('/deleteImage', function (req, res) {
+Router.post('/deleteImage',verifyToken, function (req, res) {
     const response = {
         status: 0,
         message: 'Something went wrong in your code!'

@@ -3,8 +3,9 @@ const Router        = express.Router();
 const DB            = require('../../models/db');
 const HELPERFUNC    = require('../../models/commonfunctions');
 var mongoose        = require('mongoose');
+const verifyToken = require('./auth/verifyToken');
 
-Router.get('/listCurrencies',function(req,res) {
+Router.get('/listCurrencies',verifyToken, function(req,res) {
   const response = {
     status  : 0,
   }
@@ -20,7 +21,7 @@ Router.get('/listCurrencies',function(req,res) {
   });
 });
 
-Router.post('/viewCurrency',function(req,res) {
+Router.post('/viewCurrency',verifyToken,function(req,res) {
   const response = {
 
   }
@@ -37,7 +38,7 @@ Router.post('/viewCurrency',function(req,res) {
   });
 });
 
-Router.post('/addUpdateCurrency',function(req,res) {
+Router.post('/addUpdateCurrency',verifyToken,function(req,res) {
   const response = {
     status  : 0,
     message : 'Something went wrong in your code!'
@@ -101,7 +102,7 @@ Router.post('/addUpdateCurrency',function(req,res) {
   }
 })
 
-Router.post('/deleteCurrency',function(req,res) {
+Router.post('/deleteCurrency',verifyToken,function(req,res) {
   const response = {
     status  : 0,
     message : 'Something went wrong in your code!'

@@ -1,20 +1,24 @@
 var jwt = require('jsonwebtoken');
-function verifyToken(req,res,next){
-  const response={
-    status:0,
-    message:"Something went wrong"
+function verifyToken(req, res, next) {
+  const response = {
+    status: 0,
+    message: "Something went wrong"
   }
   var webToken = req.headers['authorization'];
-  if(webToken != undefined){
+  if (webToken != undefined) {
     var token = webToken.split(' ');
   }
-  else{
-    var privateKey="ecommsite123"
-    jwt.verify(token[1], privateKey, function(err,result){
-      if(err){
+  if (!token) {
+    response.message = "Token is required"
+    res.send(response)
+  }
+  else {
+    var privateKey = "ecommsite"
+    jwt.verify(token[1], privateKey, function (err, result) {
+      if (err) {
         res.send(err)
-      }else{
-        next ();
+      } else {
+        next();
       }
     });
   }

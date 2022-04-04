@@ -3,8 +3,9 @@ const Router = express.Router();
 const DB = require('../../models/db');
 const HELPERFUNC = require('../../models/commonfunctions');
 var mongoose = require('mongoose');
+const verifyToken = require('./auth/verifyToken');
 
-Router.get('/listPages', function (req, res) {
+Router.get('/listPages',verifyToken, function (req, res) {
   const response = {
     status: 0,
   }
@@ -20,7 +21,7 @@ Router.get('/listPages', function (req, res) {
   });
 });
 
-Router.post('/viewPage', function (req, res) {
+Router.post('/viewPage',verifyToken, function (req, res) {
   const response = {
   }
   DB.GetOneDocument('pages', { _id: req.body.id }, {}, {}, function (err, result) {
@@ -36,7 +37,7 @@ Router.post('/viewPage', function (req, res) {
   });
 });
 
-Router.post('/addUpdatePage', function (req, res) {
+Router.post('/addUpdatePage',verifyToken, function (req, res) {
   const response = {
     status: 0,
     message: 'Something went wrong in your code!'
@@ -100,7 +101,7 @@ Router.post('/addUpdatePage', function (req, res) {
   }
 })
 
-Router.post('/deletePage', function (req, res) {
+Router.post('/deletePage',verifyToken, function (req, res) {
   const response = {
     status: 0,
     message: 'Something went wrong in your code!'

@@ -3,8 +3,9 @@ const Router = express.Router();
 const DB = require('../../models/db');
 const HELPERFUNC = require('../../models/commonfunctions');
 var mongoose = require('mongoose');
+const verifyToken = require('./auth/verifyToken');
 
-Router.get('/listNewsletter', function (req, res) {
+Router.get('/listNewsletter',verifyToken, function (req, res) {
   const response = {
     status: 0,
   }
@@ -20,7 +21,7 @@ Router.get('/listNewsletter', function (req, res) {
   });
 });
 
-Router.post('/viewNewsletter', function (req, res) {
+Router.post('/viewNewsletter',verifyToken, function (req, res) {
   const response = {
   }
   DB.GetOneDocument('newsletter', { _id: req.body.id }, {}, {}, function (err, result) {
@@ -36,7 +37,7 @@ Router.post('/viewNewsletter', function (req, res) {
     }
   });
 });
-Router.post('/deleteNewsletter', function (req, res) {
+Router.post('/deleteNewsletter',verifyToken, function (req, res) {
   const response = {
     status: 0,
     message: 'Something went wrong in your code!'
@@ -60,7 +61,7 @@ Router.post('/deleteNewsletter', function (req, res) {
   });
 })
 
-Router.post('/addUpdateNewsletter', function (req, res) {
+Router.post('/addUpdateNewsletter',verifyToken, function (req, res) {
   const response = {
     status: 0,
     message: 'Something went wrong in your code!'

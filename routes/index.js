@@ -9,7 +9,7 @@ module.exports = function(app) {
   app.use(BaseUrl+"newsletters", require("../controllers/admin/newsletter"));
   app.use(BaseUrl+"payments", require("../controllers/admin/payment"));
   app.use(BaseUrl+"config", require("../controllers/admin/config"));
-  // app.use(BaseUrl+"auth", require("../controllers/admin/auth"));
   app.use(BaseUrl+"login", require("../controllers/admin/login"));
   app.use(BaseUrl+"auth", require("../controllers/admin/auth/verifyToken"));
+  app.use(BaseUrl+"user", require("../controllers/site/user"));
 }

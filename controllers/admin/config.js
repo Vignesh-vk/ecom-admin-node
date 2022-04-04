@@ -3,7 +3,8 @@ const Router        = express.Router();
 const DB            = require('../../models/db');
 const HELPERFUNC    = require('../../models/commonfunctions');
 var mongoose        = require('mongoose');
-Router.get('/listConfig',function(req,res) {
+const verifyToken = require('./auth/verifyToken');
+Router.get('/listConfig',verifyToken,function(req,res) {
   const response = {
     status  : 0,
   }
@@ -19,7 +20,7 @@ Router.get('/listConfig',function(req,res) {
   });
 });
 
-Router.post('/viewConfig',function(req,res) {
+Router.post('/viewConfig',verifyToken, function(req,res) {
   const response = {    
   }
   DB.GetOneDocument('config',{_id:req.body.id}, {}, {}, function(err, result) {
@@ -36,7 +37,7 @@ Router.post('/viewConfig',function(req,res) {
   });
 });
 
-Router.post('/addUpdateConfig',function(req,res) {
+Router.post('/addUpdateConfig',verifyToken,function(req,res) {
   const response = {
     status  : 0,
     message : 'Something went wrong in your code!'
@@ -104,7 +105,7 @@ Router.post('/addUpdateConfig',function(req,res) {
   }
 })
 
-Router.post('/deleteConfig',function(req,res) {
+Router.post('/deleteConfig',verifyToken,function(req,res) {
   const response = {
     status  : 0,
     message : 'Something went wrong in your code!'

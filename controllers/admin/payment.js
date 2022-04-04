@@ -3,8 +3,9 @@ const Router        = express.Router();
 const DB            = require('../../models/db');
 const HELPERFUNC    = require('../../models/commonfunctions');
 var mongoose        = require('mongoose');
+const verifyToken = require('./auth/verifyToken');
 
-Router.get('/listPayments',function(req,res) {
+Router.get('/listPayments',verifyToken, function(req,res) {
   const response = {
     status  : 0,
   }
@@ -20,7 +21,7 @@ Router.get('/listPayments',function(req,res) {
   });
 });
 
-Router.post('/viewPayment',function(req,res) {
+Router.post('/viewPayment',verifyToken,function(req,res) {
   const response = {
 
   }
@@ -37,7 +38,7 @@ Router.post('/viewPayment',function(req,res) {
   });
 });
 
-Router.post('/addUpdatePayment',function(req,res) {
+Router.post('/addUpdatePayment',verifyToken,function(req,res) {
   const response = {
     status  : 0,
     message : 'Something went wrong in your code!'
@@ -100,7 +101,7 @@ Router.post('/addUpdatePayment',function(req,res) {
   }
 })
 
-Router.post('/deletePayment',function(req,res) {
+Router.post('/deletePayment',verifyToken,function(req,res) {
   const response = {
     status  : 0,
     message : 'Something went wrong in your code!'
